@@ -1,0 +1,101 @@
+<div class="admin-dashboard">
+  <h1 class="page-title">Resumen del dashboard</h1>
+  <p class="page-desc text-muted mb-4">
+    Bienvenido. Esto es lo que sucede en tu tienda hoy.
+  </p>
+
+  <div class="summary-cards row g-3 mb-4">
+    <div class="col-md-4">
+      <div class="summary-card card border-0 shadow-sm h-100">
+        <div class="card-body">
+          <h3 class="card-label text-muted small">Pedidos pendientes</h3>
+          <p class="card-value mb-0">{{ pendingOrders() }}</p>
+          <span class="card-badge text-success small">+8%</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="summary-card card border-0 shadow-sm h-100">
+        <div class="card-body">
+          <h3 class="card-label text-muted small">Alertas de stock bajo</h3>
+          <p class="card-value mb-0">{{ lowStockCount().length }}</p>
+          <span class="card-badge text-danger small">▲ Acción requerida</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="summary-card card border-0 shadow-sm h-100">
+        <div class="card-body">
+          <h3 class="card-label text-muted small">Ingresos del día</h3>
+          <p class="card-value mb-0">${{ todayRevenue() | number : '1.2-2' }}</p>
+          <span class="card-badge text-success small">+12%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <div class="card border-0 shadow-sm rounded-3">
+        <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center py-3">
+          <h2 class="h6 mb-0 fw-semibold">Pedidos recientes</h2>
+          <a routerLink="/admin/pedidos" class="view-all-link">Ver todos</a>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead>
+              <tr>
+                <th class="fw-semibold">ID PEDIDO</th>
+                <th class="fw-semibold">CLIENTE</th>
+                <th class="fw-semibold">TOTAL</th>
+                <th class="fw-semibold">ESTADO</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (order of orders().slice(0, 5); track order.id) {
+                <tr>
+                  <td>#{{ order.id }}</td>
+                  <td>{{ getClientName(order.userId) }}</td>
+                  <td>${{ order.total | number : '1.2-2' }}</td>
+                  <td>
+                    <span class="status-badge" [class]="getStatusClass(order.status)">
+                      {{ getStatusLabel(order.status) }}
+                    </span>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        @if (orders().length === 0) {
+          <div class="p-4 text-center text-muted small">No hay pedidos recientes.</div>
+        }
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="card border-0 shadow-sm rounded-3">
+        <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center py-3">
+          <h2 class="h6 mb-0 fw-semibold">Alertas de stock bajo</h2>
+          <a routerLink="/admin/inventario" class="view-all-link">Gestionar stock</a>
+        </div>
+        <div class="card-body p-0">
+          @for (p of lowStockProducts(); track p.id) {
+            <div class="alert-item d-flex justify-content-between align-items-center px-3 py-3 border-bottom">
+              <div>
+                <strong class="d-block">{{ p.name }}</strong>
+                <span class="small text-muted">{{ p.category }}</span>
+              </div>
+              <div class="text-end">
+                <span class="text-danger fw-semibold">{{ p.stock }} unidades</span>
+                <span class="d-block small text-muted">Mín: {{ p.minStock }}</span>
+              </div>
+            </div>
+          }
+          @if (lowStockProducts().length === 0) {
+            <div class="p-4 text-center text-muted small">No hay alertas de stock.</div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

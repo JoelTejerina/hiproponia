@@ -1,0 +1,51 @@
+<div class="admin-portal">
+  <aside class="admin-sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-icon">🌱</span>
+      <span class="brand-name">Shop Hidroponía</span>
+      <span class="portal-label">ADMIN PORTAL</span>
+    </div>
+    <nav class="sidebar-nav">
+      <a routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item">
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </a>
+      <a routerLink="/admin/pedidos" routerLinkActive="active" class="nav-item">
+        <mat-icon>list_alt</mat-icon>
+        <span>Pedidos</span>
+      </a>
+      <a routerLink="/admin/historial" routerLinkActive="active" class="nav-item">
+        <mat-icon>history</mat-icon>
+        <span>Historial</span>
+      </a>
+      <a routerLink="/admin/inventario" routerLinkActive="active" class="nav-item">
+        <mat-icon>inventory_2</mat-icon>
+        <span>Inventario</span>
+      </a>
+      <a routerLink="/admin/perfil" routerLinkActive="active" class="nav-item">
+        <mat-icon>person</mat-icon>
+        <span>Perfil</span>
+      </a>
+      <a routerLink="/admin/aprobar-clientes" routerLinkActive="active" class="nav-item">
+        <mat-icon>group_add</mat-icon>
+        <span>Aprobar clientes</span>
+      </a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="user-avatar">{{ user()?.username?.charAt(0)?.toUpperCase() ?? 'A' }}</div>
+      <div class="user-info">
+        <span class="user-name">{{ user()?.username ?? 'Admin' }}</span>
+        <span class="user-email">{{ user()?.email || 'admin@shophidroponia.com' }}</span>
+        <button type="button" class="logout-btn" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          Cerrar sesión
+        </button>
+      </div>
+    </div>
+  </aside>
+  <div class="admin-main">
+    <div class="admin-content">
+      <router-outlet />
+    </div>
+  </div>
+</div>

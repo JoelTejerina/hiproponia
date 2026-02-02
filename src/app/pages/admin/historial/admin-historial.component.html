@@ -1,0 +1,38 @@
+<div class="admin-historial">
+  <h1 class="page-title mb-1">Historial</h1>
+  <p class="page-desc text-muted mb-4">Historial de todos los pedidos realizados.</p>
+
+  <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+    <div class="table-responsive">
+      <table class="table table-hover mb-0">
+        <thead>
+          <tr>
+            <th class="fw-semibold">ID PEDIDO</th>
+            <th class="fw-semibold">FECHA</th>
+            <th class="fw-semibold">CLIENTE</th>
+            <th class="fw-semibold">TOTAL</th>
+            <th class="fw-semibold">ESTADO</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (order of orders(); track order.id) {
+            <tr>
+              <td>#{{ order.id }}</td>
+              <td>{{ formatDate(order.date) }}</td>
+              <td>{{ getClientName(order.userId) }}</td>
+              <td class="fw-semibold">${{ order.total | number : '1.2-2' }}</td>
+              <td>
+                <span [class]="getStatusClass(order.status)">
+                  {{ statusLabels[order.status] }}
+                </span>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    @if (orders().length === 0) {
+      <div class="p-5 text-center text-muted">No hay pedidos en el historial.</div>
+    }
+  </div>
+</div>

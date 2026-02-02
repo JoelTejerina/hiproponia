@@ -1,0 +1,31 @@
+.pending-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  padding: 1.5rem;
+}
+
+.pending-wrapper {
+  width: 100%;
+  max-width: 440px;
+}
+
+.pending-card {
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.pending-icon {
+  font-size: 4rem;
+  width: 4rem;
+  height: 4rem;
+  color: #ff9800;
+  margin-bottom: 1rem;
+}
+
+button mat-icon {
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}

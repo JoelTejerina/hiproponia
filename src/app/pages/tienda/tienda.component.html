@@ -1,0 +1,64 @@
+<section class="tienda-page">
+  <!-- Hero -->
+  <div class="hero-section py-5">
+    <div class="container">
+      <h1 class="hero-title">Explora nuestro catálogo</h1>
+      <p class="hero-subtitle">
+        Todo lo que necesitas de agricultura hidropónica en un solo lugar. Lechugas,
+        tomates y más, frescos y sin pesticidas.
+      </p>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <div class="filters-bar py-3 border-top border-bottom bg-light">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div class="category-pills d-flex flex-wrap gap-2 align-items-center">
+          @for (cat of categories; track cat.id) {
+            <button
+              mat-raised-button
+              [color]="currentCategory() === cat.id ? 'primary' : ''"
+              [class.active-category]="currentCategory() === cat.id"
+              class="category-btn"
+              (click)="setCategory(cat.id)"
+            >
+              {{ cat.label }}
+              @if (cat.id !== 'todos') {
+                <mat-icon class="dropdown-arrow">arrow_drop_down</mat-icon>
+              }
+            </button>
+          }
+        </div>
+        <a href="#" class="advanced-filters text-decoration-none d-flex align-items-center gap-1">
+          <mat-icon>filter_list</mat-icon>
+          <span>Ver filtros avanzados</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Productos -->
+  <div class="products-section py-5">
+    <div class="container">
+      <h2 class="section-title mb-4">Productos frescos</h2>
+      <div class="row g-4">
+        @for (product of products(); track product.id) {
+          <div class="col-6 col-md-4 col-lg-3">
+            <app-product-card [product]="product" />
+          </div>
+        }
+      </div>
+      @if (products().length === 0) {
+        <p class="text-center text-muted py-5">No hay productos que coincidan con tu búsqueda.</p>
+      }
+      @if (products().length > 0) {
+        <div class="text-center mt-4">
+          <button mat-stroked-button color="primary" class="load-more-btn" (click)="loadMore()">
+            Cargar más productos
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+</section>

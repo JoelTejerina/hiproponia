@@ -1,0 +1,30 @@
+<div class="admin-perfil">
+  <h1 class="page-title mb-1">Perfil</h1>
+  <p class="page-desc text-muted mb-4">Información de tu cuenta de administrador.</p>
+
+  <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+    <div class="card-body p-4">
+      <div class="d-flex align-items-center gap-4 mb-4">
+        <div class="profile-avatar">
+          {{ user()?.username?.charAt(0)?.toUpperCase() ?? 'A' }}
+        </div>
+        <div>
+          <h2 class="h5 mb-1">{{ user()?.username ?? 'Admin' }}</h2>
+          <p class="text-muted small mb-0">{{ user()?.email || 'admin@shophidroponia.com' }}</p>
+          <span class="badge bg-success mt-2">Administrador</span>
+        </div>
+      </div>
+      <hr />
+      <div class="row g-3">
+        <div class="col-md-6">
+          <p class="small text-muted mb-1">Usuario</p>
+          <p class="mb-0 fw-medium">{{ user()?.username ?? '—' }}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="small text-muted mb-1">Correo</p>
+          <p class="mb-0 fw-medium">{{ user()?.email || 'admin@shophidroponia.com' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="admin-aprobar-clientes">
+  <h1 class="page-title mb-1">Aprobar clientes</h1>
+    <p class="page-desc text-muted mb-4">
+      Activa o desactiva el acceso de los clientes a la tienda.
+    </p>
+
+    <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead>
+            <tr>
+              <th class="fw-semibold">Usuario</th>
+              <th class="fw-semibold">Razón social</th>
+              <th class="fw-semibold">Estado</th>
+              <th class="fw-semibold text-end">Aprobado</th>
+              <th class="fw-semibold text-end">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (user of clients(); track user.id) {
+              <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.razonSocial }}</td>
+                <td>
+                  @if (user.approved) {
+                    <span class="badge bg-success">Activo</span>
+                  } @else {
+                    <span class="badge bg-secondary">Pendiente</span>
+                  }
+                </td>
+                <td class="text-end">
+                  <mat-slide-toggle
+                    [checked]="user.approved"
+                    (change)="approveUser(user, $event.checked)"
+                    color="primary"
+                  >
+                    {{ user.approved ? 'Sí' : 'No' }}
+                  </mat-slide-toggle>
+                </td>
+                <td class="text-end">
+                  <button
+                    mat-icon-button
+                    color="warn"
+                    aria-label="Eliminar usuario"
+                    title="Eliminar usuario"
+                    (click)="openConfirmDelete(user)"
+                  >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      @if (clients().length === 0) {
+        <div class="p-4 text-center text-muted">
+          No hay clientes registrados.
+        </div>
+      }
+    </div>
+</div>

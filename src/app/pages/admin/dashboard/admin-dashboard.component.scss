@@ -1,0 +1,57 @@
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0.25rem;
+}
+
+.page-desc {
+  font-size: 0.95rem;
+}
+
+.summary-card {
+  border-radius: 12px;
+  .card-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+  .card-badge {
+    display: inline-block;
+    margin-top: 0.25rem;
+  }
+}
+
+.view-all-link {
+  color: #2e7d32;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  &.status-validando_pago {
+    background: #e3f2fd;
+    color: #1976d2;
+  }
+  &.status-enviado {
+    background: #e8f5e9;
+    color: #2e7d32;
+  }
+  &.status-completado {
+    background: #e8f5e9;
+    color: #1b5e20;
+  }
+}
+
+.alert-item:last-child {
+  border-bottom: none !important;
+}

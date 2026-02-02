@@ -1,0 +1,52 @@
+<header class="shop-header">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
+        <span class="brand-icon">🌱</span>
+        <span class="brand-name">Shop Hidroponía</span>
+      </a>
+
+      <div class="nav-links d-none d-lg-flex align-items-center gap-3">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">
+          Tienda
+        </a>
+        <a routerLink="/pedidos" routerLinkActive="active" class="nav-link">Mis Pedidos</a>
+      </div>
+
+      <div class="header-actions d-flex align-items-center gap-2">
+        <div class="search-box">
+          <mat-form-field appearance="outline" subscriptSizing="dynamic" class="search-field">
+            <mat-icon matPrefix>search</mat-icon>
+            <input
+  matInput
+  placeholder="Buscar productos..."
+  [(ngModel)]="searchQuery"
+  (ngModelChange)="onSearchChange()"
+/>
+          </mat-form-field>
+        </div>
+        <a mat-icon-button aria-label="Carrito" routerLink="/carrito" class="cart-link">
+          <mat-icon>shopping_cart</mat-icon>
+          @if (cartCount() > 0) {
+            <span class="cart-badge">{{ cartCount() }}</span>
+          }
+        </a>
+        <button mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="Usuario">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu" xPosition="before">
+          <div class="user-menu-email px-3 py-2 small text-muted">
+            {{ userEmail()?.username }}
+            @if (userEmail()?.razonSocial) {
+              <span class="d-block text-muted">{{ userEmail()?.razonSocial }}</span>
+            }
+          </div>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Cerrar sesión</span>
+          </button>
+        </mat-menu>
+      </div>
+    </nav>
+  </div>
+</header>

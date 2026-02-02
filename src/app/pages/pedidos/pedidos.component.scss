@@ -1,0 +1,157 @@
+.pedidos-page {
+  min-height: 100%;
+  background: #f8f9fa;
+}
+
+.breadcrumb-section {
+  .breadcrumb-item a {
+    color: #555;
+    text-decoration: none;
+
+    &:hover {
+      color: #2e7d32;
+    }
+  }
+
+  .breadcrumb-item.active {
+    color: #1a1a1a;
+  }
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.page-desc {
+  font-size: 0.95rem;
+}
+
+.empty-orders {
+  max-width: 400px;
+  margin: 0 auto;
+
+  .empty-icon {
+    font-size: 4rem;
+    width: 4rem;
+    height: 4rem;
+    color: #ccc;
+  }
+}
+
+.filter-tabs {
+  .filter-tab {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: transparent;
+    color: #555;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border-radius: 0;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.2s, border-color 0.2s;
+
+    &:hover {
+      color: #2e7d32;
+    }
+
+    &.active {
+      color: #2e7d32;
+      border-bottom-color: #2e7d32;
+    }
+  }
+}
+
+.orders-table-card {
+  background: #fff;
+}
+
+.order-id {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+
+  &.status-validando_pago {
+    background: #f3e5f5;
+    color: #7b1fa2;
+  }
+
+  &.status-enviado {
+    background: #e3f2fd;
+    color: #1976d2;
+  }
+
+  &.status-completado {
+    background: #e8f5e9;
+    color: #2e7d32;
+  }
+}
+
+.action-btn {
+  mat-icon {
+    font-size: 1.2rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: 0.25rem;
+    vertical-align: middle;
+  }
+}
+
+.page-num {
+  min-width: 36px;
+  width: 36px;
+  height: 36px;
+  font-size: 0.85rem;
+}
+
+.support-section {
+  background: #e8f5e9;
+  border: 1px solid rgba(46, 125, 50, 0.2);
+}
+
+.support-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(46, 125, 50, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-icon {
+    font-size: 1.75rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    color: #2e7d32;
+  }
+}
+
+.error-icon {
+  font-size: 1.1rem;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+@media (max-width: 767px) {
+  .table-responsive {
+    font-size: 0.875rem;
+  }
+
+  .action-btn {
+    span {
+      display: none;
+    }
+
+    mat-icon {
+      margin-right: 0;
+    }
+  }
+}

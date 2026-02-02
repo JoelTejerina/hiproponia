@@ -1,0 +1,160 @@
+<div class="pedidos-page">
+  <nav class="breadcrumb-section py-2 border-bottom bg-white">
+    <div class="container">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Mis Pedidos</li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="container py-4">
+    <h1 class="page-title mb-1">Mis Pedidos</h1>
+    <p class="page-desc text-muted mb-4">
+      Gestiona y rastrea tus compras de insumos agrícolas.
+    </p>
+
+    @if (orders().length === 0) {
+      <div class="empty-orders card border-0 shadow-sm p-5 text-center">
+        <mat-icon class="empty-icon">receipt_long</mat-icon>
+        <h2 class="h5 mt-3">Aún no tienes pedidos</h2>
+        <p class="text-muted mb-4">Cuando realices una compra, aparecerá aquí.</p>
+        <a mat-raised-button color="primary" routerLink="/">Explorar productos</a>
+      </div>
+    } @else {
+      <!-- Filtros por estado -->
+      <div class="filter-tabs d-flex gap-2 flex-wrap border-bottom mb-4 pb-3">
+        <button
+          type="button"
+          class="filter-tab"
+          [class.active]="filterTab() === 'todos'"
+          (click)="setFilter('todos')"
+        >
+          Todos
+        </button>
+        <button
+          type="button"
+          class="filter-tab"
+          [class.active]="filterTab() === 'validando_pago'"
+          (click)="setFilter('validando_pago')"
+        >
+          En validación
+        </button>
+        <button
+          type="button"
+          class="filter-tab"
+          [class.active]="filterTab() === 'enviado'"
+          (click)="setFilter('enviado')"
+        >
+          Enviados
+        </button>
+        <button
+          type="button"
+          class="filter-tab"
+          [class.active]="filterTab() === 'completado'"
+          (click)="setFilter('completado')"
+        >
+          Completados
+        </button>
+      </div>
+
+      <!-- Tabla de pedidos -->
+      <div class="orders-table-card card border-0 shadow-sm rounded-3 overflow-hidden">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead>
+              <tr>
+                <th class="fw-semibold">ID PEDIDO</th>
+                <th class="fw-semibold">FECHA</th>
+                <th class="fw-semibold">TOTAL</th>
+                <th class="fw-semibold">ESTADO</th>
+                <th class="fw-semibold text-end">ACCIONES</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (order of paginatedOrders(); track order.id) {
+                <tr>
+                  <td class="order-id">{{ getOrderDisplayId(order) }}</td>
+                  <td>{{ formatDate(order.date) }}</td>
+                  <td class="fw-semibold">${{ order.total | number : '1.2-2' }}</td>
+                  <td>
+                    <span [class]="getStatusClass(order.status)">
+                      {{ getStatusLabel(order) }}
+                    </span>
+                  </td>
+                  <td class="text-end">
+                    <div class="d-flex gap-1 justify-content-end flex-wrap">
+                      @if (order.status === 'enviado') {
+                        <button mat-stroked-button color="primary" class="action-btn">
+                          Rastrear
+                        </button>
+                      }
+                      <button mat-stroked-button class="action-btn">
+                        Ver Detalle
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Paginación -->
+        <div class="pagination-bar d-flex flex-wrap align-items-center justify-content-between gap-2 px-3 py-3 border-top bg-light">
+          <span class="small text-muted">
+            Mostrando {{ paginatedOrders().length }} de {{ totalFiltered() }} pedidos
+          </span>
+          <div class="d-flex align-items-center gap-1">
+            <button
+              mat-icon-button
+              [disabled]="currentPage() <= 1"
+              (click)="setPage(currentPage() - 1)"
+              aria-label="Página anterior"
+            >
+              <mat-icon>chevron_left</mat-icon>
+            </button>
+            @for (p of pageNumbers(); track p) {
+              <button
+                mat-mini-fab
+                [color]="currentPage() === p ? 'primary' : null"
+                class="page-num"
+                (click)="setPage(p)"
+              >
+                {{ p }}
+              </button>
+            }
+            <button
+              mat-icon-button
+              [disabled]="currentPage() >= totalPages()"
+              (click)="setPage(currentPage() + 1)"
+              aria-label="Página siguiente"
+            >
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Soporte -->
+      <div class="support-section card border-0 rounded-3 p-4 mt-4">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+          <div class="d-flex align-items-center gap-3">
+            <div class="support-icon rounded-circle">
+              <mat-icon>headset_mic</mat-icon>
+            </div>
+            <div>
+              <h3 class="h6 mb-1">¿Necesitas ayuda con tu pedido?</h3>
+              <p class="small text-muted mb-0">
+                Nuestro equipo está disponible para resolver dudas sobre el envío o los productos de hidroponía.
+              </p>
+            </div>
+          </div>
+          <button mat-raised-button color="primary" class="support-btn">
+            Contactar Soporte
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+</div>

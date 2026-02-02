@@ -1,0 +1,57 @@
+<div class="admin-inventario">
+  <h1 class="page-title mb-1">Inventario</h1>
+  <p class="page-desc text-muted mb-4">
+    Gestiona el stock de productos. Añade o modifica las cantidades y el mínimo de stock.
+  </p>
+
+  <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+    <div class="table-responsive">
+      <table class="table table-hover mb-0 align-middle">
+        <thead>
+          <tr>
+            <th class="fw-semibold">Producto</th>
+            <th class="fw-semibold">Categoría</th>
+            <th class="fw-semibold">Stock actual</th>
+            <th class="fw-semibold">Mín. stock</th>
+            <th class="fw-semibold text-end">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of products(); track p.id) {
+            <tr [class.table-warning]="isLowStock(p)">
+              <td>
+                <strong>{{ p.name }}</strong>
+              </td>
+              <td>{{ p.category }}</td>
+              <td>
+                <input
+                  type="number"
+                  class="form-control form-control-sm stock-input"
+                  [value]="p.stock"
+                  min="0"
+                  #stockInput
+                  (change)="updateStock(p.id, +stockInput.value)"
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  class="form-control form-control-sm stock-input"
+                  [value]="p.minStock"
+                  min="0"
+                  #minInput
+                  (change)="updateStock(p.id, p.stock, +minInput.value)"
+                />
+              </td>
+              <td class="text-end">
+                @if (isLowStock(p)) {
+                  <span class="badge bg-danger me-2">Stock bajo</span>
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
