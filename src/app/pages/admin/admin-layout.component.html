@@ -1,32 +1,40 @@
 <div class="admin-portal">
-  <aside class="admin-sidebar">
+  <!-- Overlay móvil: cierra el sidebar al tocar fuera -->
+  <div
+    class="sidebar-overlay"
+    [class.visible]="sidebarOpen()"
+    (click)="closeSidebar()"
+    aria-hidden="true"
+  ></div>
+
+  <aside class="admin-sidebar" [class.sidebar-open]="sidebarOpen()">
     <div class="sidebar-brand">
       <span class="brand-icon">🌱</span>
       <span class="brand-name">Shop Hidroponía</span>
       <span class="portal-label">ADMIN PORTAL</span>
     </div>
     <nav class="sidebar-nav">
-      <a routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item">
+      <a routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item" (click)="closeSidebar()">
         <mat-icon>dashboard</mat-icon>
         <span>Dashboard</span>
       </a>
-      <a routerLink="/admin/pedidos" routerLinkActive="active" class="nav-item">
+      <a routerLink="/admin/pedidos" routerLinkActive="active" class="nav-item" (click)="closeSidebar()">
         <mat-icon>list_alt</mat-icon>
         <span>Pedidos</span>
       </a>
-      <a routerLink="/admin/historial" routerLinkActive="active" class="nav-item">
+      <a routerLink="/admin/historial" routerLinkActive="active" class="nav-item" (click)="closeSidebar()">
         <mat-icon>history</mat-icon>
         <span>Historial</span>
       </a>
-      <a routerLink="/admin/inventario" routerLinkActive="active" class="nav-item">
+      <a routerLink="/admin/inventario" routerLinkActive="active" class="nav-item" (click)="closeSidebar()">
         <mat-icon>inventory_2</mat-icon>
         <span>Inventario</span>
       </a>
-      <a routerLink="/admin/perfil" routerLinkActive="active" class="nav-item">
+      <a routerLink="/admin/perfil" routerLinkActive="active" class="nav-item" (click)="closeSidebar()">
         <mat-icon>person</mat-icon>
         <span>Perfil</span>
       </a>
-      <a routerLink="/admin/aprobar-clientes" routerLinkActive="active" class="nav-item">
+      <a routerLink="/admin/aprobar-clientes" routerLinkActive="active" class="nav-item" (click)="closeSidebar()">
         <mat-icon>group_add</mat-icon>
         <span>Aprobar clientes</span>
       </a>
@@ -43,6 +51,18 @@
       </div>
     </div>
   </aside>
+
+  <!-- Barra superior móvil: menú + título + logout -->
+  <header class="admin-topbar-mobile">
+    <button type="button" class="menu-btn" (click)="toggleSidebar()" aria-label="Abrir menú">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="mobile-title">Admin</span>
+    <button type="button" class="logout-btn-mobile" (click)="logout()" aria-label="Cerrar sesión">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </header>
+
   <div class="admin-main">
     <div class="admin-content">
       <router-outlet />

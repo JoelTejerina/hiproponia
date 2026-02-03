@@ -2,10 +2,53 @@
   font-size: 1.5rem;
   font-weight: 600;
   color: #1a1a1a;
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 }
 
 .page-desc {
   font-size: 0.95rem;
+  @media (max-width: 768px) {
+    font-size: 0.875rem;
+  }
+}
+
+.admin-pedidos {
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -1rem;
+    padding: 0 1rem;
+    @media (max-width: 768px) {
+      margin: 0 -0.5rem;
+      padding: 0 0.5rem;
+    }
+  }
+  .table {
+    min-width: 700px;
+    @media (max-width: 768px) {
+      font-size: 0.875rem;
+    }
+  }
+  .table th,
+  .table td {
+    @media (max-width: 768px) {
+      padding: 0.5rem 0.35rem;
+      white-space: nowrap;
+    }
+  }
+  .status-select {
+    @media (max-width: 768px) {
+      max-width: 120px;
+      font-size: 0.8rem;
+    }
+  }
+  button mat-icon {
+    @media (max-width: 768px) {
+      margin-right: 0.25rem;
+    }
+  }
 }
 
 .status-badge {
