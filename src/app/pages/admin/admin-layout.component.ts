@@ -1,10 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -16,9 +13,6 @@ import { AuthService } from '../../services/auth.service';
     RouterOutlet,
     MatButtonModule,
     MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
   ],
   templateUrl: './admin-layout.component.html',
   styleUrl: './admin-layout.component.scss',
@@ -26,8 +20,16 @@ import { AuthService } from '../../services/auth.service';
 export class AdminLayoutComponent {
   private auth = inject(AuthService);
   private router = inject(Router);
-  protected searchQuery = '';
   protected user = this.auth.currentUser;
+  protected sidebarOpen = signal(false);
+
+  toggleSidebar(): void {
+    this.sidebarOpen.update((v) => !v);
+  }
+
+  closeSidebar(): void {
+    this.sidebarOpen.set(false);
+  }
 
   logout(): void {
     this.auth.logout();

@@ -3,10 +3,55 @@
   font-weight: 600;
   color: #1a1a1a;
   margin-bottom: 0.25rem;
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 }
 
 .page-desc {
   font-size: 0.95rem;
+  @media (max-width: 768px) {
+    font-size: 0.875rem;
+  }
+}
+
+.admin-dashboard {
+  .summary-cards {
+    @media (max-width: 768px) {
+      margin-bottom: 1rem;
+    }
+  }
+  .summary-card .card-value {
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+    }
+  }
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    @media (max-width: 768px) {
+      margin: 0 -0.5rem;
+    }
+  }
+  .table {
+    @media (max-width: 768px) {
+      min-width: 400px;
+      font-size: 0.875rem;
+    }
+  }
+  .table th,
+  .table td {
+    @media (max-width: 768px) {
+      padding: 0.5rem 0.35rem;
+    }
+  }
+  .alert-item {
+    @media (max-width: 768px) {
+      padding: 0.75rem 1rem !important;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  }
 }
 
 .summary-card {

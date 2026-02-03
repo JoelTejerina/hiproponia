@@ -1,13 +1,42 @@
 .admin-aprobar-clientes {
   min-height: 100%;
+
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -1rem;
+    padding: 0 1rem;
+    @media (max-width: 768px) {
+      margin: 0 -0.5rem;
+      padding: 0 0.5rem;
+    }
+  }
+  .table {
+    @media (max-width: 768px) {
+      min-width: 560px;
+      font-size: 0.875rem;
+    }
+  }
+  .table th,
+  .table td {
+    @media (max-width: 768px) {
+      padding: 0.5rem 0.35rem;
+    }
+  }
 }
 
 .page-title {
   font-size: 1.5rem;
   font-weight: 600;
   color: #1a1a1a;
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 }
 
 .page-desc {
   font-size: 0.95rem;
+  @media (max-width: 768px) {
+    font-size: 0.875rem;
+  }
 }
