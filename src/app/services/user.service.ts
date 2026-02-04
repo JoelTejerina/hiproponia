@@ -17,12 +17,12 @@ const MOCK_USERS: User[] = [
   },
   {
     id: '2',
-    username: 'mayorista1',
-    password: 'cliente123',
+    username: 'user',
+    password: 'user123',
     razonSocial: 'Verduras Frescas S.A. de C.V.',
-    email: 'contacto@verdurasfrescas.com',
+    email: 'user@example.com',
     role: 'client',
-    approved: false,
+    approved: true,
   }
 ];
 

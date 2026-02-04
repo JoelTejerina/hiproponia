@@ -70,6 +70,6 @@ export class RegistroComponent {
     }
 
     this.success = true;
-    setTimeout(() => this.router.navigate(['/login']), 2500);
+    setTimeout(() => this.router.navigate(['/login']), 3500);
   }
 }
